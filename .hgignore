@@ -1,7 +1,0 @@
-glob:*/bin/Debug/
-glob:*/obj/Debug/
-glob:*/obj/
-glob:*.suo
-glob:Thumbs.db
-glob:*.gpState
-glob:*csproj.user
