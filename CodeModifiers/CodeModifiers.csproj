@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="OverrideProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protobuf-net.cs" />
     <Compile Include="Schemas\Common.Generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

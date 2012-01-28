@@ -22,8 +22,12 @@ using System.CodeDom;
 namespace CodeGeneration.CodeModifiers
 {
     /// <summary>
-    /// The collection type converter give a slightly more useable view of a collection
-    /// in the property grid
+    /// Add or remove an include directive
+    ///     <CodeModifier Type="CodeGeneration.CodeModifiers.ModifyImports" Assembly="CodeGeneration, Version=1.0.1.0, Culture=neutral, PublicKeyToken=46a422f5b652f20b">
+    ///         <ModifyImportsOptions xmlns="http://BlueToque.ca/CodeGeneration/CodeModifiers/ModifyImports.Options">
+    ///                 <AddImport Name="ProtoBuf" />
+    ///         </ModifyImportsOptions>
+    ///     </CodeModifier>
     /// </summary>
     public class ModifyImports : BaseCodeModifier
     {

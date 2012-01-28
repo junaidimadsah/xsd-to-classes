@@ -34,7 +34,7 @@ namespace CodeGeneration.CodeModifiers
 
         public override void Execute(CodeNamespace codeNamespace)
         {
-                        // foreach datatype in the codeNamespace
+            // foreach datatype in the codeNamespace
             foreach (CodeTypeDeclaration type in codeNamespace.Types)
             {
                 if (type.IsEnum) continue;
