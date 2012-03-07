@@ -18,7 +18,6 @@
 //
 //=============================================================================
 using System.CodeDom;
-using BlueToque.XmlLibrary.CodeModifiers.Schemas;
 using CodeGeneration.CodeModifiers;
 
 namespace BlueToque.XmlLibrary.CodeModifiers
@@ -49,6 +48,10 @@ namespace BlueToque.XmlLibrary.CodeModifiers
                     CodeMemberProperty codeProperty = member as CodeMemberProperty;
                     if (codeProperty == null)
                         continue;
+
+                    // if the member is XmlElement
+                    if (codeProperty.Type.BaseType == "System.Xml.XmlElement")
+                        return;
 
                     // add the custom type editor attribute
                     CodeAttributeDeclaration attr = new CodeAttributeDeclaration("ProtoMember");

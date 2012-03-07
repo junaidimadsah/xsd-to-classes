@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "W3CXSD2001", "W3CXSD2001\W3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Register", "Register\Register.csproj", "{ACF65B9C-FCA3-4EE7-9890-F8A77BC8CA20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeModifiers", "CodeModifiers\CodeModifiers.csproj", "{049DE099-0699-44D3-8A54-7EDD23A2BD77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueToque.XmlLibrary.CodeModifiers", "CodeModifiers\BlueToque.XmlLibrary.CodeModifiers.csproj", "{049DE099-0699-44D3-8A54-7EDD23A2BD77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
