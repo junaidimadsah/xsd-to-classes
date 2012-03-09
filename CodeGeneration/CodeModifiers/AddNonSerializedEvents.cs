@@ -14,30 +14,23 @@ namespace CodeGeneration.CodeModifiers
 
         public override void Execute(CodeNamespace codeNamespace)
         {
-            //// foreach datatype in the codeNamespace
-            //foreach (CodeTypeDeclaration type in codeNamespace.Types)
-            //{
-            //    if (type.IsEnum) continue;
+            // foreach datatype in the codeNamespace
+            foreach (CodeTypeDeclaration type in codeNamespace.Types)
+            {
+                if (type.IsEnum) continue;
 
-            //    foreach (CodeTypeMember member in type.Members)
-            //    {
-            //        CodeEventReferenceExpression
-            //        CodeMemberField codeField = member as CodeMemberField;
-            //        if (codeField == null)
-            //            continue;
+                foreach (CodeTypeMember member in type.Members)
+                {
+                    CodeMemberEvent codeEvent = member as CodeMemberEvent;
+                    if (codeEvent == null)
+                        continue;
+                    
+                    // add the non serialized attribute
+                    CodeAttributeDeclaration attr = new CodeAttributeDeclaration("field: System.NonSerialized");
+                    codeEvent.CustomAttributes.Add(attr);
+                }
 
-            //        // check if the Field is XmlElement
-            //        //"[System.ComponentModel.TypeConverter(typeof(ByteTypeConverter))]";
-            //        if (codeField.Type.BaseType == typeof(Delegate).ToString())
-            //        {
-            //            // add the custom type editor attribute
-            //            CodeAttributeDeclaration attr = new CodeAttributeDeclaration("System.NonSerialized");
-            //            codeField.CustomAttributes.Add(attr);
-
-            //        }
-            //    }
-
-            //}
+            }
         }
 
         #endregion
