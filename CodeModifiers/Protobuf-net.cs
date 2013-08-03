@@ -1,7 +1,7 @@
 ﻿//=============================================================================
 //
-// Copyright (C) 2007 Michael Coyle, Blue Toque
-// http://www.BlueToque.ca/Products/XmlGridControl2.html
+// Copyright (C) 2013 Michael Coyle, Blue Toque
+// http://www.bluetoque.ca/products/xsdtoclasses/
 // michael.coyle@BlueToque.ca
 //
 // This program is free software; you can redistribute it and/or modify

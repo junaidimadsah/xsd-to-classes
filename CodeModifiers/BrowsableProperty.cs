@@ -1,7 +1,7 @@
 ﻿//=============================================================================
 //
 // Copyright (C) 2013 Michael Coyle, Blue Toque
-// http://www.bluetoque.ca/products/xsdtoclasses/
+// http://www.BlueToque.ca/Products/XmlGridControl2.html
 // michael.coyle@BlueToque.ca
 //
 // This program is free software; you can redistribute it and/or modify
@@ -17,25 +17,26 @@
 // http://www.gnu.org/licenses/gpl.txt
 //
 //=============================================================================
-using System.CodeDom;
-using BlueToque.XmlLibrary.CodeModifiers.Schemas;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using CodeGeneration.CodeModifiers;
+using BlueToque.XmlLibrary.CodeModifiers.Schemas;
+using System.CodeDom;
 
 namespace BlueToque.XmlLibrary.CodeModifiers
 {
-    /// <summary>
-    /// Make a property in a class virtual
-    /// </summary>
-    public class VirtualProperty : BaseCodeModifier
+    class BrowsableProperty : BaseCodeModifier
     {
-        VirtualPropertyOptions m_options;
+        BrowsablePropertyOptions m_options;
 
-        public VirtualPropertyOptions Options
+        public BrowsablePropertyOptions Options
         {
             get
             {
                 if (m_options == null)
-                    m_options = GetOptions<VirtualPropertyOptions>();
+                    m_options = GetOptions<BrowsablePropertyOptions>();
                 return m_options;
             }
         }
@@ -64,13 +65,10 @@ namespace BlueToque.XmlLibrary.CodeModifiers
                     if (propertyType.QualifiedName.EndsWith(property.Name) ||
                         propertyType.QualifiedName.EndsWith("*"))
                     {
-                        // There is no Virtual member attribute. A member is declared virtual by setting its member 
-                        // access to Public (property1.Attributes = MemberAttributes.Public) without specifying it 
-                        // as Final. The absence of the Final flag makes a member virtual in C# (public virtual), 
-                        // overrideable in Visual Basic (Public Overrideable). To avoid declaring the member as 
-                        // virtual or overrideable, set both the Public and Final flags in the Attributes property. 
-                        // See the Attributes property for more information on setting member attributes
-                        property.Attributes = MemberAttributes.Public;
+                        // add the custom type editor attribute
+                        CodeAttributeDeclaration attr = new CodeAttributeDeclaration("System.ComponentModel.Browsable");
+                        attr.Arguments.Add(new CodeAttributeArgument(new CodePrimitiveExpression(false)));
+                        property.CustomAttributes.Add(attr);
                     }
                 }
             }

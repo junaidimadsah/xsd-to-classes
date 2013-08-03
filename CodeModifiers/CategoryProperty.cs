@@ -1,7 +1,7 @@
 ﻿//=============================================================================
 //
 // Copyright (C) 2013 Michael Coyle, Blue Toque
-// http://www.bluetoque.ca/products/xsdtoclasses/
+// http://www.BlueToque.ca/Products/XmlGridControl2.html
 // michael.coyle@BlueToque.ca
 //
 // This program is free software; you can redistribute it and/or modify
@@ -17,25 +17,25 @@
 // http://www.gnu.org/licenses/gpl.txt
 //
 //=============================================================================
-using System.CodeDom;
 using BlueToque.XmlLibrary.CodeModifiers.Schemas;
 using CodeGeneration.CodeModifiers;
+using System.CodeDom;
 
 namespace BlueToque.XmlLibrary.CodeModifiers
 {
     /// <summary>
-    /// Make a property in a class virtual
+    /// Add a category property with the given value
     /// </summary>
-    public class VirtualProperty : BaseCodeModifier
+    class CategoryProperty : BaseCodeModifier
     {
-        VirtualPropertyOptions m_options;
+        CategoryPropertyOptions m_options;
 
-        public VirtualPropertyOptions Options
+        public CategoryPropertyOptions Options
         {
             get
             {
                 if (m_options == null)
-                    m_options = GetOptions<VirtualPropertyOptions>();
+                    m_options = GetOptions<CategoryPropertyOptions>();
                 return m_options;
             }
         }
@@ -50,8 +50,8 @@ namespace BlueToque.XmlLibrary.CodeModifiers
             foreach (CodeTypeDeclaration type in codeNamespace.Types)
             {
                 // if the qualified name doesn't start with the name of the class, continue.
-                PropertyType propertyType = Options.Property.Find(x => x.QualifiedName.StartsWith(type.Name));
-                if (propertyType == null)
+                CategoryType categoryType = Options.Property.Find(x => x.QualifiedName.StartsWith(type.Name));
+                if (categoryType == null)
                     continue;
 
                 // for each property in the type
@@ -61,21 +61,19 @@ namespace BlueToque.XmlLibrary.CodeModifiers
                         continue;
 
                     CodeMemberProperty property = (member as CodeMemberProperty);
-                    if (propertyType.QualifiedName.EndsWith(property.Name) ||
-                        propertyType.QualifiedName.EndsWith("*"))
+                    if (categoryType.QualifiedName.EndsWith(property.Name) ||
+                        categoryType.QualifiedName.EndsWith("*"))
                     {
-                        // There is no Virtual member attribute. A member is declared virtual by setting its member 
-                        // access to Public (property1.Attributes = MemberAttributes.Public) without specifying it 
-                        // as Final. The absence of the Final flag makes a member virtual in C# (public virtual), 
-                        // overrideable in Visual Basic (Public Overrideable). To avoid declaring the member as 
-                        // virtual or overrideable, set both the Public and Final flags in the Attributes property. 
-                        // See the Attributes property for more information on setting member attributes
-                        property.Attributes = MemberAttributes.Public;
+                        // add the custom type editor attribute
+                        CodeAttributeDeclaration attr = new CodeAttributeDeclaration("System.ComponentModel.Category");
+                        attr.Arguments.Add(new CodeAttributeArgument(new CodePrimitiveExpression(categoryType.Category)));
+                        property.CustomAttributes.Add(attr);
                     }
                 }
             }
         }
 
         #endregion
+
     }
 }
