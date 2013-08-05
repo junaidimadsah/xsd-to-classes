@@ -43,11 +43,12 @@ namespace BlueToque.XmlLibrary.CodeModifiers
         #region ICodeModifier Members
         public override void Execute(CodeNamespace codeNamespace)
         {
+            if (Options == null || Options.Property == null || Options.Property.Count == 0)
+                return;
+
             // foreach datatype in the codeNamespace
             foreach (CodeTypeDeclaration type in codeNamespace.Types)
             {
-                if (Options == null || Options.Property == null || Options.Property.Count == 0)
-                    return;
 
                 // if the qualified name doesn't start with the name of the class, continue.
                 PropertyType propertyType = Options.Property.Find(x => x.QualifiedName.StartsWith(type.Name));
@@ -67,7 +68,6 @@ namespace BlueToque.XmlLibrary.CodeModifiers
                         property.Attributes =
                             MemberAttributes.Override |
                             MemberAttributes.Public;
-                            //MemberAttributes.Final;
                     }
                 }
             }

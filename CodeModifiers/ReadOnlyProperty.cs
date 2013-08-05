@@ -17,25 +17,26 @@
 // http://www.gnu.org/licenses/gpl.txt
 //
 //=============================================================================
-using BlueToque.XmlLibrary.CodeModifiers.Schemas;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using CodeGeneration.CodeModifiers;
+using BlueToque.XmlLibrary.CodeModifiers.Schemas;
 using System.CodeDom;
 
 namespace BlueToque.XmlLibrary.CodeModifiers
 {
-    /// <summary>
-    /// Add a category property with the given value
-    /// </summary>
-    class CategoryProperty : BaseCodeModifier
+    class ReadOnlyProperty : BaseCodeModifier
     {
-        CategoryPropertyOptions m_options;
+        ReadOnlyPropertyOptions m_options;
 
-        public CategoryPropertyOptions Options
+        public ReadOnlyPropertyOptions Options
         {
             get
             {
                 if (m_options == null)
-                    m_options = GetOptions<CategoryPropertyOptions>();
+                    m_options = GetOptions<ReadOnlyPropertyOptions>();
                 return m_options;
             }
         }
@@ -49,31 +50,30 @@ namespace BlueToque.XmlLibrary.CodeModifiers
             // foreach datatype in the codeNamespace
             foreach (CodeTypeDeclaration type in codeNamespace.Types)
             {
-                // if the qualified name doesn't start with the name of the class, continue.
-                CategoryType categoryType = Options.Property.Find(x => x.QualifiedName.StartsWith(type.Name));
-                if (categoryType == null)
+                // get a list of the propertytypes that start with the class name
+                List<PropertyType> propertyTypes = Options.Property.FindAll(x => x.QualifiedName.StartsWith(type.Name));
+                if (propertyTypes == null || propertyTypes.Count == 0)
                     continue;
 
-                // for each property in the type
-                foreach (CodeTypeMember member in type.Members)
+                foreach (PropertyType propertyType in propertyTypes)
                 {
-                    if (!(member is CodeMemberProperty))
+                    CodeMemberProperty member = type
+                        .Members
+                        .OfType<CodeMemberProperty>()
+                        .FirstOrDefault(x => propertyType.QualifiedName.EndsWith(x.Name) || propertyType.QualifiedName.EndsWith("*"));
+                    if (member == null)
                         continue;
 
-                    CodeMemberProperty property = (member as CodeMemberProperty);
-                    if (categoryType.QualifiedName.EndsWith(property.Name) ||
-                        categoryType.QualifiedName.EndsWith("*"))
-                    {
-                        // add the custom type editor attribute
-                        CodeAttributeDeclaration attr = new CodeAttributeDeclaration("System.ComponentModel.Category");
-                        attr.Arguments.Add(new CodeAttributeArgument(new CodePrimitiveExpression(categoryType.Category)));
-                        property.CustomAttributes.Add(attr);
-                    }
-                }
+                    // add the custom type editor attribute
+                    CodeAttributeDeclaration attr = new CodeAttributeDeclaration("System.ComponentModel.ReadOnly");
+                    attr.Arguments.Add(new CodeAttributeArgument(new CodePrimitiveExpression(true)));
+                    member.CustomAttributes.Add(attr);
+
+                }   
+
             }
         }
 
         #endregion
-
     }
 }

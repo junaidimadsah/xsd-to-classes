@@ -50,27 +50,27 @@ namespace BlueToque.XmlLibrary.CodeModifiers
             // foreach datatype in the codeNamespace
             foreach (CodeTypeDeclaration type in codeNamespace.Types)
             {
-                // if the qualified name doesn't start with the name of the class, continue.
-                PropertyType propertyType = Options.Property.Find(x => x.QualifiedName.StartsWith(type.Name));
-                if (propertyType == null)
+                // get a list of the propertytypes that start with the class name
+                List<PropertyType> propertyTypes = Options.Property.FindAll(x => x.QualifiedName.StartsWith(type.Name));
+                if (propertyTypes == null || propertyTypes.Count == 0)
                     continue;
 
-                // for each property in the type
-                foreach (CodeTypeMember member in type.Members)
+                foreach (PropertyType propertyType in propertyTypes)
                 {
-                    if (!(member is CodeMemberProperty))
+                    CodeMemberProperty member = type
+                        .Members
+                        .OfType<CodeMemberProperty>()
+                        .FirstOrDefault(x => propertyType.QualifiedName.EndsWith(x.Name) || propertyType.QualifiedName.EndsWith("*"));
+                    if (member == null)
                         continue;
 
-                    CodeMemberProperty property = (member as CodeMemberProperty);
-                    if (propertyType.QualifiedName.EndsWith(property.Name) ||
-                        propertyType.QualifiedName.EndsWith("*"))
-                    {
-                        // add the custom type editor attribute
-                        CodeAttributeDeclaration attr = new CodeAttributeDeclaration("System.ComponentModel.Browsable");
-                        attr.Arguments.Add(new CodeAttributeArgument(new CodePrimitiveExpression(false)));
-                        property.CustomAttributes.Add(attr);
-                    }
-                }
+                    // add the custom type editor attribute
+                    CodeAttributeDeclaration attr = new CodeAttributeDeclaration("System.ComponentModel.Browsable");
+                    attr.Arguments.Add(new CodeAttributeArgument(new CodePrimitiveExpression(false)));
+                    member.CustomAttributes.Add(attr);
+
+                }   
+
             }
         }
 

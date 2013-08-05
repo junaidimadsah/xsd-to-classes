@@ -64,8 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BrowsableProperty.cs" />
-    <Compile Include="CategoryProperty.cs" />
+    <Compile Include="PropertyGridProperties.cs" />
     <Compile Include="OverrideProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Protobuf-net.cs" />
@@ -74,19 +73,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Common.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Schemas\CategoryPropertyOptions.cs">
-      <DependentUpon>CategoryPropertyOptions.xsd</DependentUpon>
+    <Compile Include="Schemas\PropertyGridOptions.cs">
+      <DependentUpon>PropertyGridOptions.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Schemas\CategoryPropertyOptions.Generated.cs">
-      <DependentUpon>CategoryPropertyOptions.xsd</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Schemas\BrowsablePropertyOptions.cs">
-      <DependentUpon>BrowsablePropertyOptions.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Schemas\BrowsablePropertyOptions.Generated.cs">
-      <DependentUpon>BrowsablePropertyOptions.xsd</DependentUpon>
+    <Compile Include="Schemas\PropertyGridOptions.Generated.cs">
+      <DependentUpon>PropertyGridOptions.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -115,28 +106,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Options\CategoryProperty.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Options\BrowsableProperty.xml">
+    <Content Include="Options\PropertyGridProperty.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Options\OverrideProperty.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Schemas\CategoryPropertyOptions.Generated.xml">
-      <DependentUpon>CategoryPropertyOptions.xsd</DependentUpon>
-    </None>
     <None Include="Schemas\Common.Generated.xml">
       <DependentUpon>Common.xsd</DependentUpon>
     </None>
-    <Content Include="Schemas\BrowsablePropertyOptions.Generated.xml">
-      <DependentUpon>BrowsablePropertyOptions.xsd</DependentUpon>
-    </Content>
-    <Content Include="Schemas\BrowsablePropertyOptions.xsd">
-      <Generator>XsdToClasses</Generator>
-      <LastGenOutput>BrowsablePropertyOptions.Generated.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+    <Content Include="Schemas\PropertyGridOptions.Generated.xml">
+      <DependentUpon>PropertyGridOptions.xsd</DependentUpon>
     </Content>
     <None Include="Schemas\OverridePropertyOptions.Generated.xml">
       <DependentUpon>OverridePropertyOptions.xsd</DependentUpon>
@@ -161,9 +141,9 @@
       <Generator>XsdToClasses</Generator>
       <LastGenOutput>Common.Generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Schemas\CategoryPropertyOptions.xsd">
+    <Content Include="Schemas\PropertyGridOptions.xsd">
       <Generator>XsdToClasses</Generator>
-      <LastGenOutput>CategoryPropertyOptions.Generated.cs</LastGenOutput>
+      <LastGenOutput>PropertyGridOptions.Generated.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
