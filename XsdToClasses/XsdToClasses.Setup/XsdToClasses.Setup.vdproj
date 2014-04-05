@@ -45,13 +45,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6F091CB1E034688DBFD95538B6949ED2"
+        "MsmKey" = "8:_7B3D665834D215627EF19A8E3425B1FF"
         "OwnerKey" = "8:_0120E846F2C84E55805FE6DA18E062F9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6F091CB1E034688DBFD95538B6949ED2"
+        "MsmKey" = "8:_7B3D665834D215627EF19A8E3425B1FF"
         "OwnerKey" = "8:_A92CC0AD7966418B9AB21B8928195D02"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -142,7 +142,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6F091CB1E034688DBFD95538B6949ED2"
+        "OwnerKey" = "8:_7B3D665834D215627EF19A8E3425B1FF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -404,14 +404,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6F091CB1E034688DBFD95538B6949ED2"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7B3D665834D215627EF19A8E3425B1FF"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:CodeGeneration, Version=1.0.1.0, Culture=neutral, PublicKeyToken=46a422f5b652f20b, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6F091CB1E034688DBFD95538B6949ED2"
+                    "_7B3D665834D215627EF19A8E3425B1FF"
                     {
                     "Name" = "8:CodeGeneration.dll"
                     "Attributes" = "3:512"
@@ -675,15 +675,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:XsdToClasses"
-        "ProductCode" = "8:{EB0AE62C-ECB8-4EF8-860A-57495C7DAB81}"
-        "PackageCode" = "8:{FFEB8A38-ED19-48EA-B59B-1E01599E3F40}"
+        "ProductCode" = "8:{3B754594-05DC-4781-8649-C9999F86592F}"
+        "PackageCode" = "8:{4B80A2BF-BDC2-46A5-8BD6-D039E1A5A1C1}"
         "UpgradeCode" = "8:{00976143-405B-426E-9AFC-3E999B0FC06C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.2.25"
+        "ProductVersion" = "8:1.2.26"
         "Manufacturer" = "8:Blue Toque"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://www.bluetoque.ca/Products/XsdToClasses"

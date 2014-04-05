@@ -55,6 +55,8 @@ namespace BlueToque.XsdToClasses
     [VersionSupport("8.0")]     // Visual studio 2005
     [VersionSupport("9.0")]     // Visual studio 2008
     [VersionSupport("10.0")]    // Visual studio 2010
+    [VersionSupport("11.0")]    // Visual studio 2013
+    [VersionSupport("12.0")]    // Visual studio 2013
     [CategorySupport(CategorySupportAttribute.CSharpCategory)]
 	//[CategorySupport(CategorySupportAttribute.VBCategory)]
 	public class XsdCodeGenerator : CustomTool
